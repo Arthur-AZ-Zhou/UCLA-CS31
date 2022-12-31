@@ -1,0 +1,85 @@
+a) I did experience a few notable obstacles, the main one being 
+planning the isValidPollString() function. I solved it by writing the
+algorithm and casework down on a sheet of paper so that I had an idea
+of what to code. I also took breaks like going to the gym after 
+getting burnt out to give my mind a break so I could work more 
+effectively after I was done. My program design is in part b.
+    Additionally, I also had a few issues testing the code. What I 
+did to solve it was that I looked at every single case the code 
+could possibly be and wrote test cases for each possibility. I ended
+up having 12 test cases total which is quite a significant amount.
+
+b) 
+isValidPollString():
+set a string stateForecast to be each state forecast for the pollData
+loop thru pollData 
+    find each stateForecast separated by comma
+    check double comma scenario
+    check if stateForecast first 2 characters is a state
+    if yes, loop thru rest of stateForecast for digits and parties
+        check for one digit
+            check for 2 digit scenario, then check for party after
+            else if, check for valid party
+    reset stateForecast after each check
+
+countSeats(): 
+return the valid numbers
+set seatCount to 0
+loop through pollData, separate by each stateForecast
+    no need to check anything, skip to 3rd character and start adding
+        if 1 digit, just check party add that one digit
+        if 2 digit, check party then add firstDigit*10 + secondDigit 
+
+c) My test cases:
+//test a normal chain, sees if my function will recognize a valid poll string
+if (isValidPollString("CA34D12R2I,nV9R,vt,Ny3r9I13D")) 
+    cerr << "Passed test 1: isValidPollString(\"CA34D12R2I,nV9R,vt,Ny3r9I13D\")" << endl;
+
+//tests countseats on a valid pollString, sees if the seats actually sets the seats
+int seats = -999;
+if (countSeats("CA34D12R2I,nV9R,vt,Ny3r9I13D", 'd', seats) == 0  &&  seats == 47) 
+    cerr << "Passed test 1: countSeats(\"CA34D12R2I,nV9R,vt,Ny3r9I13D\", 'd', seats)" << endl;
+
+//test an empty string, since empty string is valid we need to test edge case
+if (isValidPollString("")) 
+    cerr << "Passed test 2: isValidPollString(\"\")" << endl;
+
+//tests a state code, we can have a state and no predictions so we have to test
+if (isValidPollString("cA")) 
+    cerr << "Passed test 3: isValidPollString(\"cA\")" << endl;
+
+//space in poll string, tests to see if it catches an error with a space
+if (!isValidPollString("CA34D12R2I, nV9R,vt,Ny3r9I13D")) 
+    cerr << "Passed test 4: !isValidPollString(\"CA34D12R2I, nV9R,vt,Ny3r9I13D\")" << endl;
+
+//comma in beginning, wants to catch invalid comma in beginning
+if (!isValidPollString(",CA34D12R2I,nV9R,vt,Ny3r9I13D")) 
+    cerr << "Passed test 5: !isValidPollString(\",CA34D12R2I,nV9R,vt,Ny3r9I13D\")" << endl;
+
+//comma in end, wants to catch invalid comma in end
+if (!isValidPollString("CA34D12R2I,nV9R,vt,Ny3r9I13D,")) 
+    cerr << "Passed test 6: !isValidPollString(\"CA34D12R2I,nV9R,vt,Ny3r9I13D,\")" << endl;
+
+//incorrect state code, sees if program catches invalid state code
+if (!isValidPollString("ZT5D,NY9R16D1I,VT,ne3r00D")) 
+    cerr << "Passed test 7: !isValidPollString(\"ZT5D,NY9R16D1I,VT,ne3r00D\")" << endl;
+
+//incorrect state code, sees if program catches invalid state code by itself
+if (!isValidPollString("ZT512")) 
+    cerr << "Passed test 8: !isValidPollString(\"ZT512\")" << endl;
+
+//nonsense string that starts with state code, sees if program can detect a nonsense string despite having valid state
+if (!isValidPollString("Cablahblah")) 
+    cerr << "Passed test 9: !isValidPollString(\"Cablahblah\")" << endl;
+
+//nonsense string, if program can detect a nonsense string
+if (!isValidPollString("blahblah")) 
+    cerr << "Passed test 10: !isValidPollString(\"blahblah\")" << endl;
+
+//extra letter, if program can detect an unnecessary letter at the end
+if (!isValidPollString("Ca1bb"))
+    cerr << "Passed test 11: !isValidPollString(\"Ca1bb\")" << endl;
+
+//random number, if program can detect a random letter with no state at all
+if (!isValidPollString("12")) 
+    cerr << "Passed test 12: !isValidPollString(\"12\")" << endl;

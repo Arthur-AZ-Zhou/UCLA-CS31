@@ -1,0 +1,153 @@
+1a. 
+int main() {
+    int arr[3] = { 5, 10, 15 };
+    int* ptr = arr;
+
+    *ptr = 30;          // set arr[0] to 30
+    *(ptr + 1) = 20;   // set arr[1] to 20
+    ptr += 2;
+    *ptr = 10;        // set arr[2] to 10
+
+    ptr = arr;
+    while (ptr < &arr[3]) {
+        cout << *ptr << endl;    // print values
+        ptr++;
+    }
+}
+
+1b. This doesn't work initially because you don't actually change the variable passed to pToMax because there's no pass by reference to it. Everything 
+else works fine. To fix this, you add an & after the int* to change the pToMax on the outside. 
+
+void findMax(int arr[], int n, int*& pToMax) {
+    if (n <= 0) 
+        return;      // no items, no maximum!
+
+    pToMax = arr;
+
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > *pToMax) {
+            pToMax = arr + i;
+        }
+    }
+}
+
+1c. Pointer has to be initialized to something not called a nullptr. To do this, you just place a placeholder variable so pointer has somewhere to put the
+finished completed computeCube value into.
+
+int main() {
+    int placeholder = 369;
+    int* ptr = nullptr;
+    ptr = &placeholder;
+    computeCube(5, ptr);
+    cout << "Five cubed is " << *ptr << endl;
+}
+
+1d. You have to dereference almost all values of str1 and str2. It points to the address of the cstring index, not the actual value itself. You have to 
+dereference all instances except str1++ and str2++ because those increment the index of the pointer
+
+// return true if two C strings are equal
+bool strequal(const char str1[], const char str2[]) {
+    while (*str1 != 0 && *str2 != 0) {  // zero bytes at ends
+        if (*str1 != *str2)  // compare corresponding characters
+            return false;
+        str1++;            // advance to the next character
+        str2++;
+    }
+    return *str1 == *str2;   // both ended at same time?
+}
+
+int main() {
+    char a[15] = "Chang";
+    char b[15] = "Zhang";
+
+    if (strequal(a,b))
+        cout << "They're the same person!\n";
+}
+
+1e. The problem is ptr will not be pointing to an array because anArray[] is out of the scope of main. So as a result you're pointing to indexes that don't
+exist and the compiler is printing out random numbers
+
+2a. double* cat;
+2b. double mouse[5];
+2c. cat = &mouse[4];
+2d. *cat = 25;
+2e. *(mouse + 3) = 54;
+2f. cat -= 3;
+2g. cat[2] = 42;
+2h. cat[0] = 17;
+2i. bool d = (*cat == mouse[0]);
+2j. bool b = (*cat == *(cat + 1));
+
+3a. 
+double mean(const double* scores, int numScores) {
+    const double* ptr = scores;
+    double tot = 0;
+    for (int i = 0; i < numScores; i++) {
+        tot += *(ptr + i);
+    }
+    return tot/numScores;
+}
+
+3b. 
+// This function searches through str for the character chr.
+// If the chr is found, it returns a pointer into str where
+// the character was first found, otherwise nullptr (not found).
+
+const char* findTheChar(const char* str, char chr) {
+    for (int k = 0; *(str + k) != 0; k++)
+        if (*(str + k) == chr)
+            return &str[k];
+
+    return nullptr;
+}
+
+3c. 
+const char* findTheChar(char* str, char chr) {
+    while (*str != 0) {
+        if (*str == chr) {
+            return str;
+        }
+        str++;
+    }
+    return nullptr;
+}
+
+4. 
+3
+4
+79
+-1
+9
+22
+19
+
+int* ptr = maxwell(array, &array[2]); points the ptr to &array[0] because 5 is greater than 4
+*ptr = -1; changes array[0] to -1, array is now -1, 3, 4, 17, 22, 19
+ptr += 2; brings pointer to array[2]
+ptr[1] = 9; changes array[3] to 9, array is now -1, 3, 4, 9, 22, 19
+*(array+1) = 79; changes array[1] to 79 because array + 1 is equal to array[0 + 1], -1, 79, 4, 9, 22, 19
+cout << &array[5] - ptr << endl; prints out the difference between 5 and the index pointer is currently at. Since ptr is currently at array[2] it'll print 3
+swap1(&array[0], &array[1]); does not actually successfully swap both array references because the value of a and b in the function isn't changed outside
+swap2(array, &array[2]); successfully swaps array[0] and array[2], array is now 4, 79, -1, 9, 22, 19
+for (int i = 0; i < 6; i++)
+    cout << array[i] << endl;
+will loop through the array and print out all values, after all the changes we get the array 4, 79, -1, 9, 22, 19
+
+5. 
+void removeS(char* str) {
+    while (*str != 0) {
+        char* subStr = nullptr;
+
+        if (*str == 's' || *str == 'S') {
+            subStr = str;
+
+            while (*str != 0) {
+                *str = *(str + 1);
+                str++;
+            }
+            str = subStr;
+        } else {
+            str++;
+        }
+    }
+}

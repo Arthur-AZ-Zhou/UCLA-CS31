@@ -1,0 +1,52 @@
+a) The most notable obstacle I overcame was the way I had to program 
+the final function, split(). I initially decided to separate the 
+strings less than splitter and greater than splitter into two separate
+arrays and go from there. That led to me creating 5 for loops: one for
+finding the size of the before and after splitter arrays, 2 loops for
+populating both the before and after array, and then two more for
+populating the new array I was going to create. Obviously this was a 
+ton of work and I kinda forgot to debug it while I went along and I
+ended up coding for like 10 minutes straight and then it didn't work at
+all so that was super demoralizing.
+
+And then I realized that I could just sort the array alphabetically
+and then count from there which was far easier and took me way less
+time to do and worked on the first try.
+
+b) 
+appendToAll(people, -4, "!!!") //test negative n value
+appendToAll(people, 5, "!!!") //test normal cases, sees if the function straight-up works
+
+lookup(people1, 6, "gordon") //find earliest gordon, there are multiple gordons in people1 so you have to find the earliest value
+lookup(people1, 6, "arthur") //checks if it works if target string doesn't exist
+
+positionOfMax(pm, 7) //finds first instance of alphabetically-last name since there are multiple instances
+positionOfMax(pm1, 0) // checks if it works if there's no interesting elements
+
+rotateLeft(mp, 5, 1) //tests a normal scenario if it works
+rotateLeft(mp1, 5, -4) //check out of bounds negative position
+rotateLeft(mp1, 5, 10) //check out of bounds, beyond last index of array 
+rotateLeft(mp1, -5, 3) //negative n value
+
+countRuns(d, 9) //counts 5 sequences of consecutive values
+countRuns(d, -9) //checks for negative name
+
+flip(leader, 4) //tests swap on first 4 elements of array
+flip(leader1, 7) //tests an odd-number array flip
+
+differ(leader2, 6, politician, 5) //normal test, should return index 2
+differ(leader2, 2, politician, 1) //tests when both n's iterate to the end
+differ(leader2, -3, politician, 1) //checks for negative n value
+
+subsequence(names, 6, names1, 3) //normal test, found a subsequence at index 1
+subsequence(names, 5, names2, 2) //test w/ no subsequence in names
+subsequence(names, 6, names3, 0) //test with names3 as an empty array
+subsequence(names3, 0, names4, 0) //2 empty subsequences, should still return 0
+subsequence(names3, 0, names2, 6) //test an empty array as man sequence and an actual array as subsequence, should return -1
+
+lookupAny(names5, 6, set1, 4) //normal test, should return 1
+lookupAny(names5, 6, set2, 2) //what if nothing from set2 exists in names5, returns -1
+lookupAny(names5, 6, set3, 0) //empty set, should return -1 
+
+split(pm2, 6, "john") //normal test case, see if array gets changed correctly and split() returns right value
+split(pm3, 4, "rishi") //includes the splitter itself in the string array

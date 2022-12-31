@@ -1,0 +1,15 @@
+a. The most notable obstacle for me was trying to mentally think about the path of the if statements I were to use. I considered having an integer
+that labels the income as one of 3 scenarios: lower than 55k, between 55k and 120k, and above 120k. I then realized that I didn't have to make
+the scenario variable if I simply just checked in the main if statement loop itself. It took me a solid 20 minutes to think of my main if, else if, and else
+part of my code. Other than that, it was smooth sailing.
+
+b. 
+Template for what I'm about to enter: (income, occupation, # of children) = $amtOwed
+(10000, engineer, 0) = $400, checks if the tax for first bracket is right
+(10000, nurse, 1) = $200, makes sure nurses/teachers dont get discount in first bracket, also checks child situation
+(10000, bus driver, 3) = $0, makes sure amtOwed can't go below 0
+(90000, engineer, 2) = $4250, makes sure 2nd bracket not nurse/teacher works
+(90000, teacher, 12) = $1550, checks for teacher/nurse scenario in second bracket
+(250000, businessman, 9) = $18725, checks for above 2nd bracket
+(250000, nurse, 9) = $17325, checks for above 2nd bracket but is nurse/teacher
+My code is able to handle each test case correctly unless there's an invalid input.

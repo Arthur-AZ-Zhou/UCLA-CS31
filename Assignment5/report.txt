@@ -1,0 +1,29 @@
+a) The most notable obstacles was the process in creating the main wordle algorithm. For me, it was easy to find the filepath and set up the correct 
+detection system to see if the probe words were valid and if the arrays I were given had the proper characteristics to it. I went through at least 2 designs 
+of the wordle game itself before I finally settled on the design of finding the golds first, replacing the gold letters with a '1' character and 
+then searching for the silvers with '1' as well when I was finished with them. This design had a few typos here and there because I coded it at 3:30 am on
+a Saturday right after I came back from watching the new Black Panther from Westwood. So I think the biggest challenge was actually my sleep schedule because
+I had a very hard time debugging I searched through my code twice before I realized I used an i instead of a j for one of the index locations of the
+answer cstring. I think I should plan ahead next time I take on a project like this and set aside time for myself to finish it so I don't end up trying
+to do it last minute at the worst possible time.
+
+b) Pseudocode:
+for main(): 
+create wordlist and everything and call getWords to populate wordlist
+ask and check how many rounds you want to play
+start the main loop, print out hidden word and then call the play one round
+after the one round is done, list the min, max, and average tries, check for them
+    for the first round, just set min max and average to the number of tries 
+    for the next rounds, check if the rounds is greater/less than max or min respectively and calculate average
+
+for playOneRound(): 
+have a tries variable that returns the number of tries it took to find the answer
+check if nWords and wordnum is valid
+have while (true), first check if the input string is valid
+    check if in bounds
+    check if all lowercase
+    check if valid word
+for main algorithm, check for the golds first and if you found gold replace the character in gold index for both probe and answer with '1'
+check for silvers, make sure if character is '1' you skip that index
+    have 2 for loops to look for the silvers
+print out number of golds and silvers and continue to next round
