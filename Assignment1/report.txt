@@ -1,0 +1,14 @@
+For the initial run, I put in 1000 voters with 369 votes for Gavin and 631 votes for Brian, leading to 36.9% of votes for Gavin and 63.1% of votes for Brian
+I then input 1 surveyed voter and said that 3 voted for Gavin and none voted for Brian, resulting in 300% of the voters saying they will vote for Gavin
+and 0% voting for Brian which is clearly nonsensical because you can't have 300% of a population vote for a candidate.
+
+For the logic_error.cpp, instead of double pctGavin = 100.0 * forGavin / numberSurveyed;, I put in an integer instead of the double (I did the same with 
+Brian's percentage). It works if you have like let's say 10 voters and 6 voted for Gavin and 4 voted for Brian (a 60% 40% split), but if you had
+the initial scenario with 36.9% of voters for Gavin and 63.1% for Brian, pctGavin and pctBrian would omit the decimal, leading to a 36% and 63% ratio which
+doesn't add up to 100.
+
+For the compile_error.cpp, I removed a semicolon from int numberSurveyed and put a colon after the if else statement (like they do in Python). I thought that 
+a new coder would make these mistakes such as forgetting a semicolon or if they transitioned from another language like Python they would enter in the 
+wrong syntax on accident. As a result of this, there were 5 compiler errors: one where the next line had an error because the previous one had no closing
+semicolon, and since numberSurveyed wasn't closed the variable wasn't defined either. And because of that since int forGavin was affected by the lack of 
+the semicolon, that variable wasn't defined either. Finally there were 2 unexpected expressions: the colons after the if and else statements.
